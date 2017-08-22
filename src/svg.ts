@@ -171,9 +171,9 @@ function renderArrow(brush: DrawBrush, orig: cg.Pos, dest: cg.Pos, current: bool
   b = pos2px(dest, bounds),
   dx = b[0] - a[0],
   dy = b[1] - a[1],
-  angle = Math.atan2(dy, dx),
-  xo = Math.cos(angle) * m,
-  yo = Math.sin(angle) * m;
+  hypot = Math.sqrt(dx * dx + dy * dy),
+  xo = dx / hypot * m,
+  yo = dy / hypot * m;
   return setAttributes(createElement('line'), {
     stroke: brush.color,
     'stroke-width': lineWidth(brush, current, bounds),
